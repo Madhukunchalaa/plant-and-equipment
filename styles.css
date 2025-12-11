@@ -733,8 +733,60 @@ footer {
 
 .truck-visual {
     flex: 1;
-    height: 300px; /* Space for animation */
-    /* Truck img styling remains similar but fits new context */
+    height: 400px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.truck-anim-img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(255,102,0,0.3));
+    z-index: 5;
+    /* Initial state for animation */
+    transform: translateX(100px);
+    opacity: 0;
+    transition: all 1s ease-out;
+}
+
+/* Animation Trigger Class */
+.truck-visual.active .truck-anim-img {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Speed Lines Effect */
+.truck-visual::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: -50px;
+    width: 150%;
+    height: 2px;
+    background: rgba(255,102,0,0.8);
+    box-shadow: 0 0 10px var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s 0.5s; /* Delay to sync with truck arrival */
+}
+
+.truck-visual.active::after {
+    transform: scaleX(1);
+    animation: speedLineFlash 2s infinite;
+}
+
+@keyframes speedLineFlash {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .truck-section { height: auto; padding: 60px 0; }
+    .truck-container { flex-direction: column; gap: 40px; }
+    .truck-text { width: 90%; margin: 0 auto; }
+    .truck-visual { height: 250px; width: 100%; }
 }
 
 /* EQUIPMENT SECTION - VERTICAL TABS REDESIGN */
