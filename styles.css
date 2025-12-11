@@ -1,0 +1,959 @@
+/* High-Tech Velocity Design System */
+:root {
+    --primary: #FFFFFF;
+    --secondary: #2C3E50; /* Deep Matte Charcoal */
+    --accent: #FF6600; /* Electric Orange */
+    --tech-grey: #E0E0E0;
+    --dark-grey: #1a252f;
+    --light-bg: #F9F9F9;
+    --text-color: #333333;
+    --text-light: #F0F0F0;
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --font-main: 'Lato', 'Segoe UI', sans-serif;
+    --font-heading: 'Avenir Next', 'Montserrat', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--light-bg);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h1 { font-size: 3rem; line-height: 1.2; }
+h2 { font-size: 2.2rem; margin-bottom: 1rem; color: var(--secondary); }
+h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+.highlight { color: var(--accent); }
+.text-light { color: var(--text-light); }
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: white;
+    box-shadow: 0 4px 6px rgba(255, 102, 0, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: #e65c00;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 102, 0, 0.4);
+}
+
+.btn-pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 102, 0, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 102, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 102, 0, 0); }
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transition: var(--transition);
+    background: transparent; /* Start transparent */
+}
+
+.navbar.scrolled {
+    background: tbody; /* Fallback */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px 5%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--secondary); /* Default dark for light bg */
+}
+.navbar:not(.scrolled) .logo { color: white; } /* White on hero */
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links li a {
+    color: var(--secondary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    position: relative;
+    transition: var(--transition);
+}
+
+.navbar:not(.scrolled) .nav-links li a { color: white; }
+
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--accent);
+    transition: var(--transition);
+}
+
+.nav-links li a:hover::after { width: 100%; }
+
+.nav-cta {
+    display: block; /* Visible on desktop */
+}
+
+.mobile-menu-btn {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+}
+.navbar.scrolled .mobile-menu-btn { color: var(--secondary); }
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('assets/images/hero_excavator.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+}
+
+.hero-content {
+    max-width: 800px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Sections General */
+section {
+    padding: 80px 5%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    color: var(--secondary);
+}
+
+/* Lead Form */
+.lead-form-section {
+    background: var(--dark-grey);
+    padding: 40px 5%;
+    margin-top: -60px; /* Overlap hero */
+    position: relative;
+    z-index: 10;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lead-form {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-group input, .form-group select {
+    padding: 12px 15px;
+    border: none;
+    border-radius: 4px;
+    background: #f0f0f0;
+    min-width: 200px;
+    font-family: var(--font-main);
+}
+
+.lead-form button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.lead-form button:hover { background: #e65c00; }
+
+/* Trust Bar */
+.trust-bar {
+    background: var(--light-bg);
+    padding: 40px 5%;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.trust-item {
+    font-weight: 700;
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.trust-item span { color: var(--accent); }
+
+/* Truck Animation Section */
+.truck-section {
+    background: var(--secondary);
+    color: white;
+    overflow: hidden;
+    position: relative;
+}
+
+.truck-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.truck-text {
+    width: 40%;
+    z-index: 2;
+}
+
+.truck-text h2 { color: white; }
+
+.truck-visual {
+    width: 60%;
+    height: 300px;
+    position: relative;
+    /* This will contain the animation */
+}
+
+.truck-anim-img {
+    height: 200px;
+    position: absolute;
+    right: -100%; /* Start off screen */
+    bottom: 20px;
+    transition: transform 1s ease-out; /* Fallback */
+}
+
+.truck-anim-img.animate {
+    animation: driveTruck 4s linear infinite;
+}
+
+@keyframes driveTruck {
+    from { transform: translateX(100vw); }
+    to { transform: translateX(-100vw); }
+}
+
+/* Why Choose Us */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: var(--transition);
+    border-top: 4px solid transparent;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-top: 4px solid var(--accent);
+}
+
+.feature-card h3 { color: var(--secondary); }
+
+/* COVERAGE SECTION - SIMPLE & MODERN */
+
+.coverage-section {
+    background: url('assets/images/civil_site.png') no-repeat center center/cover;
+    padding: 100px 5%;
+    position: relative;
+    /* Overlay for readability */
+}
+
+.coverage-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(44, 62, 80, 0.85); /* Dark blue-grey overlay */
+    z-index: 1;
+}
+
+.coverage-section .section-title {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 50px;
+}
+
+.coverage-section .section-title h2 {
+    color: white;
+}
+
+.coverage-section .section-title p {
+    color: #ffd700; /* Gold/Orange accent for subtitle */
+}
+
+.coverage-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.coverage-item {
+    background: white;
+    padding: 30px;
+    border-radius: 8px; /* Simple rounded corners */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centered content */
+    text-align: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-bottom: 4px solid transparent;
+}
+
+.coverage-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    border-bottom-color: var(--accent);
+}
+
+.icon-box {
+    width: 70px;
+    height: 70px;
+    background: #f4f6f8;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 2rem;
+    transition: all 0.3s;
+}
+
+.coverage-item:hover .icon-box {
+    background: var(--accent);
+    color: white;
+    transform: scale(1.1);
+}
+
+.coverage-item h4 {
+    color: var(--secondary);
+    font-size: 1.2rem;
+    margin: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.coverage-item p {
+    color: #666;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Removing old Hex-Tech specifics */
+.coverage-item::after { display: none; }
+.coverage-item::before { display: none; }
+
+/* Excavator Animation Section */
+.excavator-section {
+    background: #f4f4f4;
+    position: relative;
+    overflow: hidden;
+}
+
+.excavator-container {
+    display: flex;
+    flex-direction: row-reverse; /* Text on right, image left */
+    align-items: center;
+    gap: 40px;
+}
+
+.excavator-text { flex: 1; }
+
+.excavator-visual {
+    flex: 1;
+    position: relative;
+    height: 400px;
+    background: url('assets/images/hero_excavator.png') no-repeat center center; /* Placeholder or specific bg */
+    background-size: cover;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Warning overlay */
+.warning-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(44, 62, 80, 0.9);
+    color: var(--accent);
+    padding: 20px;
+    border: 2px solid var(--accent);
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 5;
+}
+
+.warning-overlay.active {
+    animation: flashAlert 0.5s 3 alternate;
+    opacity: 1;
+}
+
+@keyframes flashAlert {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Footer */
+footer {
+    background: var(--secondary);
+    color: white;
+    padding: 60px 5%;
+    text-align: center;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.footer-col h4 { margin-bottom: 20px; color: var(--accent); }
+.footer-col a { display: block; margin-bottom: 10px; color: #ccc; }
+.footer-col a:hover { color: white; }
+
+.copyright {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    color: #888;
+}
+
+/* Sticky Mobile CTA */
+.mobile-sticky-cta {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    text-align: center;
+    z-index: 2000;
+}
+
+.mobile-sticky-cta a {
+    display: block;
+    background: var(--accent);
+    color: white;
+    padding: 15px;
+    border-radius: 30px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-transform: uppercase;
+}
+
+/* Responsive - Mobile First approach handling via Min-width where possible, but here using Max-width for adaptations */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 1.8rem; }
+   
+    .navbar { padding: 15px; background: rgba(255, 255, 255, 0.95); }
+    .nav-links {
+        display: none; /* Hide definition by default, toggle via JS for hamburger */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+    .nav-links.active { display: flex; }
+    .nav-links li a { color: var(--secondary) !important; font-size: 1.2rem; display: block; padding: 10px; }
+   
+    .nav-cta { display: none; } /* Hide header button on mobile */
+    .mobile-menu-btn { display: block; color: var(--secondary); }
+    .logo { color: var(--secondary) !important; }
+
+    .mobile-sticky-cta { display: block; }
+   
+    .hero { background-attachment: scroll; } /* Better performance */
+   
+    .truck-container, .excavator-container { flex-direction: column; }
+    .truck-visual, .truck-text, .excavator-visual, .excavator-text { width: 100%; }
+    .truck-visual { margin-top: 30px; }
+   
+    .lead-form-section { padding: 20px; }
+    .lead-form { flex-direction: column; width: 100%; }
+    .form-group input, .form-group select, .lead-form button { width: 100%; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Equipment List */
+.equipment-list li {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    padding-left: 20px;
+    position: relative;
+}
+
+.equipment-list li::before {
+    content: '\25B6'; /* Triangle */
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+    font-size: 0.8rem;
+    top: 4px;
+}
+
+/* Sector Cards */
+.sector-card {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+.sector-card:hover {
+    background: var(--accent);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Process Steps */
+.process-steps {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    text-align: center;
+}
+
+.step {
+    flex: 1;
+    min-width: 200px;
+}
+
+.step-num {
+    width: 50px;
+    height: 50px;
+    background: var(--accent);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(255,102,0,0.3);
+}
+
+/* Testimonials */
+.testimonial-card {
+    text-align: center;
+    border-top: 4px solid var(--accent);
+}
+
+.quote {
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.author {
+    font-weight: bold;
+    color: var(--secondary);
+}
+
+/* FAQ */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--light-bg);
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--secondary);
+}
+
+.faq-item h4 {
+    margin-bottom: 10px;
+    color: var(--accent);
+}
+
+/* Truck Animation Section - Parallax & Glassmorphism */
+.truck-section {
+    position: relative;
+    background-image: url('assets/images/motion_road_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax Effect */
+    overflow: hidden;
+    padding: 100px 5%;
+    color: white;
+}
+
+.truck-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(44, 62, 80, 0.7); /* Dark overlay for text readability */
+    z-index: 1;
+}
+
+.truck-container {
+    position: relative; /* Above overlay */
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.truck-text {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.truck-text h2 { 
+    color: white; 
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    font-size: 2.2rem;
+}
+
+.truck-text p {
+    color: #f0f0f0;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+.truck-visual {
+    flex: 1;
+    height: 300px; /* Space for animation */
+    /* Truck img styling remains similar but fits new context */
+}
+
+/* EQUIPMENT SECTION - VERTICAL TABS REDESIGN */
+
+.equipment-tabs-section {
+    background: white;
+    padding: 100px 5%;
+}
+
+.equipment-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0; /* Removing gap to have connected feel or minimal gap */
+    min-height: 500px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* LEFT: The Tab Buttons */
+.equipment-tabs {
+    flex: 0 0 300px; /* Fixed width */
+    background: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    border-right: 1px solid #eee;
+}
+
+.tab-btn {
+    padding: 25px 30px;
+    text-align: left;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1rem;
+    color: var(--secondary);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tab-btn:hover {
+    background: #fff;
+    color: var(--accent);
+    padding-left: 35px; /* Slight movement */
+}
+
+.tab-btn.active {
+    background: white;
+    color: var(--accent);
+    /* mask the border-right to blend with content area */
+    border-right: 3px solid var(--accent); /* OR highlight strip */
+    margin-right: -1px; /* Overlap border */
+    box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+    z-index: 2;
+}
+
+.tab-btn::after {
+    content: '\276F'; /* Arrow */
+    transform: scale(0);
+    transition: transform 0.2s;
+}
+
+.tab-btn.active::after {
+    transform: scale(1);
+}
+
+/* RIGHT: The Content Display */
+.equipment-display {
+    flex: 1;
+    background: white;
+    padding: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.tab-content {
+    display: none;
+    width: 100%;
+    animation: fadeInSlide 0.5s ease-out;
+}
+
+.tab-content.active {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Inside Content Layout */
+.content-text {
+    flex: 1;
+}
+
+.content-text h3 {
+    font-size: 2.2rem;
+    color: var(--secondary);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.content-text ul {
+    list-style: none;
+    padding: 0;
+}
+
+.content-text li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+    color: #555;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 5px;
+}
+
+.content-text li::before {
+    content: '\25B8';
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+}
+
+.content-image {
+    flex: 1.2;
+    height: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.content-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 5s ease;
+}
+
+.tab-content.active .content-image img {
+    transform: scale(1.1); /* Slow zoom effect on active */
+}
+
+@keyframes fadeInSlide {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .equipment-container {
+        flex-direction: column;
+    }
+    .equipment-tabs {
+        flex: none;
+        flex-direction: row;
+        overflow-x: auto;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+    }
+    .tab-btn {
+        flex: 0 0 auto;
+        padding: 15px 20px;
+        border-bottom: none;
+    }
+    .tab-content.active {
+        flex-direction: column-reverse;
+    }
+    .content-image {
+        height: 250px;
+        width: 100%;
+    }
+}
+
+/* Sub-Page Banner Style */
+.page-banner {
+    position: relative;
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: 80px; /* Offset for fixed navbar */
+}
+
+.page-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(44, 62, 80, 0.7); /* Dark overlay */
+    z-index: 1;
+}
+
+.page-banner-content {
+    position: relative;
+    z-index: 2;
+}
+
+.page-banner h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.page-banner p {
+    font-size: 1.2rem;
+    color: #f0f0f0;
+    max-width: 600px;
+    margin: 0 auto;
+}
