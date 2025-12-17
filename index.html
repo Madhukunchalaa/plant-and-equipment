@@ -67,11 +67,40 @@
     </section>
 
     <!-- Trust Bar -->
+    <!-- Trust Bar -->
     <div class="trust-bar">
-        <div class="trust-item"><span>&#10003;</span> Compare Multiple Insurers</div>
-        <div class="trust-item"><span>&#10003;</span> 24/7 Claims Support</div>
-        <div class="trust-item"><span>&#10003;</span> Flexible Payment Plans</div>
-        <div class="trust-item"><span>&#10003;</span> Australia-Wide Coverage</div>
+        <div class="trust-bar-track">
+            <!-- Set 1 -->
+            <div class="trust-item"><span>&#10003;</span> Compare Multiple Insurers</div>
+            <div class="trust-item"><span>&#10003;</span> 24/7 Claims Support</div>
+            <div class="trust-item"><span>&#10003;</span> Flexible Payment Plans</div>
+            <div class="trust-item"><span>&#10003;</span> Australia-Wide Coverage</div>
+            <!-- Set 2 -->
+            <div class="trust-item"><span>&#10003;</span> Compare Multiple Insurers</div>
+            <div class="trust-item"><span>&#10003;</span> 24/7 Claims Support</div>
+            <div class="trust-item"><span>&#10003;</span> Flexible Payment Plans</div>
+            <div class="trust-item"><span>&#10003;</span> Australia-Wide Coverage</div>
+            <!-- Set 3 -->
+            <div class="trust-item"><span>&#10003;</span> Compare Multiple Insurers</div>
+            <div class="trust-item"><span>&#10003;</span> 24/7 Claims Support</div>
+            <div class="trust-item"><span>&#10003;</span> Flexible Payment Plans</div>
+            <div class="trust-item"><span>&#10003;</span> Australia-Wide Coverage</div>
+            <!-- Set 4 -->
+            <div class="trust-item"><span>&#10003;</span> Compare Multiple Insurers</div>
+            <div class="trust-item"><span>&#10003;</span> 24/7 Claims Support</div>
+            <div class="trust-item"><span>&#10003;</span> Flexible Payment Plans</div>
+            <div class="trust-item"><span>&#10003;</span> Australia-Wide Coverage</div>
+            <!-- Set 5 -->
+            <div class="trust-item"><span>&#10003;</span> Compare Multiple Insurers</div>
+            <div class="trust-item"><span>&#10003;</span> 24/7 Claims Support</div>
+            <div class="trust-item"><span>&#10003;</span> Flexible Payment Plans</div>
+            <div class="trust-item"><span>&#10003;</span> Australia-Wide Coverage</div>
+            <!-- Set 6 -->
+            <div class="trust-item"><span>&#10003;</span> Compare Multiple Insurers</div>
+            <div class="trust-item"><span>&#10003;</span> 24/7 Claims Support</div>
+            <div class="trust-item"><span>&#10003;</span> Flexible Payment Plans</div>
+            <div class="trust-item"><span>&#10003;</span> Australia-Wide Coverage</div>
+        </div>
     </div>
 
     <!-- Introduction Section -->
@@ -79,22 +108,21 @@
         <div class="section-title">
             <h2>SPECIALIST BROKERS</h2>
         </div>
-        <div style="display: flex; gap: 40px; align-items: center; max-width: 1200px; margin: 0 auto; flex-wrap: wrap;">
-            <div style="flex: 1; min-width: 300px;">
+        <div class="intro-content-grid">
+            <div class="intro-text">
                 <p><strong>Protecting Australia's Construction & Earthmoving Equipment</strong></p>
-                <p style="margin-top: 15px;">Whether you're operating excavators on major civil projects or managing a
+                <p>Whether you're operating excavators on major civil projects or managing a
                     fleet of compact equipment, having the right insurance in place protects your business from
                     unexpected financial setbacks.</p>
-                <p style="margin-top: 15px;">We're specialist plant and equipment insurance brokers, connecting
+                <p>We're specialist plant and equipment insurance brokers, connecting
                     Australian contractors and equipment operators with comprehensive coverage from leading insurers.
                     Our streamlined process makes it easy to compare policies, understand your options, and secure
                     protection tailored to your machinery and operations.</p>
-                <p style="margin-top: 15px;">From mini excavators to mining-class dozers, we help businesses across
+                <p>From mini excavators to mining-class dozers, we help businesses across
                     Australia find insurance solutions designed specifically for heavy machinery risks.</p>
             </div>
-            <div style="flex: 1; min-width: 300px;">
-                <img src="assets/images/civil_site.png" alt="Civil Construction Site"
-                    style="width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <div class="intro-image">
+                <img src="assets/images/civil_site.png" alt="Civil Construction Site">
             </div>
         </div>
     </section>
@@ -344,19 +372,86 @@
     </section>
 
     <!-- Industry Sectors -->
-    <section class="industry-section" style="background: var(--dark-grey); color: white;">
+    <!-- Industry Sectors (Industrial Cards Redesign) -->
+    <section class="industry-section" id="sectors">
         <div class="section-title">
-            <h2 style="color: white;">SECTORS WE SERVE</h2>
+            <h2>SECTORS WE SERVE</h2>
+            <p style="color: var(--accent);">Tailored insurance for your specific machinery class</p>
         </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-            <div class="sector-card">Construction & Civil</div>
-            <div class="sector-card">Earthmoving Specialists</div>
-            <div class="sector-card">Equipment Hire</div>
-            <div class="sector-card">Landscaping</div>
-            <div class="sector-card">Mining & Quarrying</div>
-            <div class="sector-card">Agricultural</div>
-            <div class="sector-card">Demolition</div>
-            <div class="sector-card">Waste Management</div>
+        <div class="sector-grid">
+
+            <a href="services.html" class="sector-card-item"
+                style="background-image: url('assets/images/civil_site.png');">
+                <div class="sector-overlay">
+                    <i class="fas fa-city"></i>
+                    <h3>Construction & Civil</h3>
+                    <div class="sector-line"></div>
+                </div>
+            </a>
+
+            <a href="services.html" class="sector-card-item"
+                style="background-image: url('assets/images/earthmoving_tab.png');">
+                <div class="sector-overlay">
+                    <i class="fas fa-truck-monster"></i>
+                    <h3>Earthmoving</h3>
+                    <div class="sector-line"></div>
+                </div>
+            </a>
+
+            <a href="services.html" class="sector-card-item"
+                style="background-image: url('assets/images/equipment_lineup.png');">
+                <div class="sector-overlay">
+                    <i class="fas fa-file-signature"></i>
+                    <h3>Plant Hire</h3>
+                    <div class="sector-line"></div>
+                </div>
+            </a>
+
+            <a href="services.html" class="sector-card-item"
+                style="background-image: url('assets/images/compact_tab.png');">
+                <div class="sector-overlay">
+                    <i class="fas fa-tree"></i>
+                    <h3>Landscaping</h3>
+                    <div class="sector-line"></div>
+                </div>
+            </a>
+
+            <a href="services.html" class="sector-card-item"
+                style="background-image: url('assets/images/mining_fleet.png');">
+                <div class="sector-overlay">
+                    <i class="fas fa-gem"></i>
+                    <h3>Mining & Quarrying</h3>
+                    <div class="sector-line"></div>
+                </div>
+            </a>
+
+            <a href="services.html" class="sector-card-item"
+                style="background-image: url('assets/images/hero_dozer.png');">
+                <div class="sector-overlay">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Agricultural</h3>
+                    <div class="sector-line"></div>
+                </div>
+            </a>
+
+            <a href="services.html" class="sector-card-item"
+                style="background-image: url('assets/images/lifting_tab.png');">
+                <div class="sector-overlay">
+                    <i class="fas fa-hammer"></i>
+                    <h3>Demolition</h3>
+                    <div class="sector-line"></div>
+                </div>
+            </a>
+
+            <a href="services.html" class="sector-card-item"
+                style="background-image: url('assets/images/truck_detail.png');">
+                <div class="sector-overlay">
+                    <i class="fas fa-recycle"></i>
+                    <h3>Waste Management</h3>
+                    <div class="sector-line"></div>
+                </div>
+            </a>
+
         </div>
     </section>
 
@@ -377,35 +472,65 @@
         </div>
     </section>
 
-    <!-- Simple Process -->
-    <section style="background: white;">
+    <!-- Process Schematic Section -->
+    <section class="process-schematic-section">
         <div class="section-title">
-            <h2>OUR SIMPLE PROCESS</h2>
-            <p>Fast track to coverage in 4 steps.</p>
+            <h2 style="color: white; text-shadow: 0 0 10px rgba(255,102,0,0.5);">SYSTEMATIC PROCESS</h2>
+            <p style="color: var(--accent); font-family: monospace; letter-spacing: 2px;">>> INITIALIZING COVERAGE
+                PROTOCOL <<< /p>
         </div>
-        <div class="process-steps">
-            <div class="step">
-                <div class="step-num">1</div>
-                <h3>Share Requirements</h3>
-                <p>Complete our online quote form or call our team.</p>
+
+        <div class="schematic-container">
+            <!-- SVG Circuit Line Background -->
+            <div class="circuit-overlay">
+                <svg width="100%" height="100%" preserveAspectRatio="none">
+                    <line x1="10%" y1="50%" x2="90%" y2="50%" stroke="#2C3E50" stroke-width="4" />
+                    <line class="pulse-line" x1="10%" y1="50%" x2="90%" y2="50%" stroke="#FF6600" stroke-width="4" />
+                </svg>
             </div>
-            <div class="step">
-                <div class="step-num">2</div>
-                <h3>We Compare</h3>
-                <p>We review options from multiple leading insurers.</p>
-            </div>
-            <div class="step">
-                <div class="step-num">3</div>
-                <h3>Review Options</h3>
-                <p>We present competitive quotes with clear explanations.</p>
-            </div>
-            <div class="step">
-                <div class="step-num">4</div>
-                <h3>Get Covered</h3>
-                <p>Select your option and we handle the rest instantly.</p>
+
+            <div class="process-timeline schematic-timeline">
+
+                <div class="process-card schematic-card" style="animation-delay: 0.2s;">
+                    <div class="step-image">
+                        <img src="assets/images/process_step_1.png" alt="Share Requirements">
+                        <div class="step-badge">1</div>
+                    </div>
+                    <h3>Share Specs</h3>
+                    <p>Input your fleet requirements via secure form or direct line.</p>
+                </div>
+
+                <div class="process-card schematic-card" style="animation-delay: 0.4s;">
+                    <div class="step-image">
+                        <img src="assets/images/process_step_2.png" alt="We Compare">
+                        <div class="step-badge">2</div>
+                    </div>
+                    <h3>Analyze Data</h3>
+                    <p>We scan the market matrix for optimal coverage matches.</p>
+                </div>
+
+                <div class="process-card schematic-card" style="animation-delay: 0.6s;">
+                    <div class="step-image">
+                        <img src="assets/images/process_step_3.png" alt="Review Options">
+                        <div class="step-badge">3</div>
+                    </div>
+                    <h3>Review Output</h3>
+                    <p>Receive competitive quotes with clear schematic breakdowns.</p>
+                </div>
+
+                <div class="process-card schematic-card" style="animation-delay: 0.8s;">
+                    <div class="step-image">
+                        <img src="assets/images/process_step_4.png" alt="Get Covered">
+                        <div class="step-badge">4</div>
+                    </div>
+                    <h3>Activate</h3>
+                    <p>Select your protocol. Instant policy generation initiated.</p>
+                </div>
             </div>
         </div>
-        <p style="text-align: center; margin-top: 20px; font-weight: bold;">Typical turnaround: 24-48 hours</p>
+        <div style="text-align: center; margin-top: 40px; font-family: monospace; color: #888;">
+            Estimated Latency: 24-48 Hours
+        </div>
     </section>
 
     <!-- Testimonials -->

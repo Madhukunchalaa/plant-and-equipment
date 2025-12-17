@@ -201,6 +201,51 @@ section {
     color: var(--secondary);
 }
 
+/* Intro Section Grid (50/50 Balance) */
+.intro-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Strict 50/50 split */
+    gap: 60px; /* Increased gap for better breathing room */
+    align-items: center; /* Vertically align content */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.intro-text p {
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+    color: var(--text-color);
+}
+
+.intro-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Ensure aspect ratio is maintained */
+    border-radius: 8px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15); /* Enhanced shadow */
+    max-height: 500px; /* Prevent it from becoming too tall */
+}
+
+/* Mobile Responsive for Intro Grid */
+@media (max-width: 900px) {
+    .intro-content-grid {
+        grid-template-columns: 1fr; /* Stack clearly on smaller screens */
+        gap: 40px;
+    }
+    
+    .intro-text, .intro-image {
+        width: 100%;
+    }
+}
+
 /* Lead Form */
 .lead-form-section {
     background: var(--dark-grey);
@@ -247,33 +292,91 @@ section {
 .lead-form button:hover { background: #e65c00; }
 
 /* Trust Bar */
+/* Trust Bar (Marquee) */
 .trust-bar {
-    background: var(--light-bg);
-    padding: 40px 5%;
-    text-align: center;
+    background: linear-gradient(90deg, #151e26 0%, #2c3e50 50%, #151e26 100%);
+    padding: 25px 0;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    white-space: nowrap;
+    position: relative;
+    z-index: 5;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Gradient Masks for smooth fade edges */
+.trust-bar::before, .trust-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+.trust-bar::before {
+    left: 0;
+    background: linear-gradient(to right, #151e26, transparent);
+}
+.trust-bar::after {
+    right: 0;
+    background: linear-gradient(to left, #151e26, transparent);
+}
+
+.trust-bar-track {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
-    border-bottom: 1px solid #ddd;
+    gap: 80px; /* Spacious gap */
+    width: max-content;
+    animation: scrollTrust 40s linear infinite;
+}
+
+.trust-bar-track:hover {
+    animation-play-state: paused;
 }
 
 .trust-item {
     font-weight: 700;
-    color: var(--secondary);
+    color: #ffffff;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
-.trust-item span { color: var(--accent); }
+.trust-item span { 
+    color: var(--accent); 
+    font-size: 1.2rem;
+    filter: drop-shadow(0 0 5px rgba(255, 102, 0, 0.4));
+}
+
+@keyframes scrollTrust {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Scrolls exactly half the track length (3 sets out of 6) */
+}
 
 /* Truck Animation Section */
+/* Truck Animation Section */
 .truck-section {
-    background: var(--secondary);
+    background: url('assets/images/motion_road_bg.png') no-repeat center center;
+    background-size: cover;
     color: white;
     overflow: hidden;
     position: relative;
+    padding: 100px 5%;
+    height: 600px; /* Fixed height for consistent staging */
+    display: flex;
+    align-items: center;
+}
+
+/* Dark overlay for text readability */
+.truck-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 1;
 }
 
 .truck-container {
@@ -281,37 +384,66 @@ section {
     align-items: center;
     justify-content: space-between;
     position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    z-index: 2; /* Above overlay */
 }
 
+/* Glassmorphism Text Card */
 .truck-text {
-    width: 40%;
-    z-index: 2;
+    width: 45%;
+    z-index: 5;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
 }
 
-.truck-text h2 { color: white; }
+.truck-text h2 { 
+    color: white; 
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.truck-text p {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
 
 .truck-visual {
-    width: 60%;
-    height: 300px;
-    position: relative;
-    /* This will contain the animation */
+    width: 55%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    pointer-events: none; /* Let clicks pass through */
+    /* Container for the driving truck */
 }
 
 .truck-anim-img {
-    height: 200px;
+    height: auto;
+    width: 400px; /* Realistic size */
     position: absolute;
-    right: -100%; /* Start off screen */
-    bottom: 20px;
-    transition: transform 1s ease-out; /* Fallback */
+    right: -100%; /* Start well off-screen */
+    bottom: 10%; /* Sit on the "road" visually */
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6));
+    will-change: transform;
 }
 
 .truck-anim-img.animate {
-    animation: driveTruck 4s linear infinite;
+    animation: driveTruck 5s linear infinite; /* Slower, smoother drive */
 }
 
 @keyframes driveTruck {
-    from { transform: translateX(100vw); }
-    to { transform: translateX(-100vw); }
+    /* Start from right off-screen -> Move to left off-screen */
+    0% { transform: translateX(100vw); } 
+    100% { transform: translateX(-200%); } /* Ensure it fully clears */
 }
 
 /* Why Choose Us */
@@ -596,49 +728,268 @@ footer {
     top: 4px;
 }
 
-/* Sector Cards */
-.sector-card {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 15px 25px;
-    border-radius: 30px;
-    font-weight: bold;
-    transition: var(--transition);
+/* Industry Section (Industrial Cards) */
+.industry-section {
+    background: #111; /* Deep dark background */
+    padding: 100px 5%;
+    position: relative;
+    /* Subtle grid pattern background */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
 }
 
-.sector-card:hover {
-    background: var(--accent);
+.industry-section .section-title h2 { color: white; }
+
+.sector-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sector-card-item {
+    position: relative;
+    height: 350px; /* Tall vertical cards */
+    border-radius: 12px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    text-decoration: none;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    /* Start with a heavy filter for 'blueprint/dark' look */
+    filter: grayscale(80%) contrast(0.9) brightness(0.8);
+}
+
+/* Gradient Overlay */
+.sector-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 10%, rgba(0,0,0,0.4) 60%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px;
+    transition: all 0.4s ease;
+}
+
+.sector-overlay i {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 15px;
+    transform: translateY(0);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sector-overlay h3 {
+    font-size: 1.5rem;
     color: white;
-    transform: translateY(-2px);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
 }
 
-/* Process Steps */
-.process-steps {
+/* Safety Stripe Line */
+.sector-line {
+    width: 40px;
+    height: 4px;
+    background: var(--accent);
+    transition: width 0.4s ease;
+}
+
+/* Hover Effects */
+.sector-card-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    filter: grayscale(0%) contrast(1.1) brightness(1.1); /* Reveal full color */
+}
+
+.sector-card-item:hover .sector-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 100%);
+}
+
+.sector-card-item:hover i {
+    transform: translateY(-5px) scale(1.1);
+    color: #fff; /* Icon turns white */
+}
+
+.sector-card-item:hover .sector-line {
+    width: 100%; /* Line expands across */
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    .sector-card-item {
+        height: 250px;
+    }
+}
+
+/* Process Schematic Theme (Dark Industrial) */
+.process-schematic-section {
+    background: #1a252f; /* Dark background block */
+    padding: 80px 0;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
+    /* Grid Pattern Overlay */
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.schematic-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* SVG Overlay */
+.circuit-overlay {
+    position: absolute;
+    top: 110px; /* Align with image centers */
+    left: 0;
+    width: 100%;
+    height: 40px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.pulse-line {
+    stroke-dasharray: 100%;
+    stroke-dashoffset: 100%;
+    animation: circuitPulse 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    filter: drop-shadow(0 0 5px #FF6600);
+}
+
+@keyframes circuitPulse {
+    0% { stroke-dashoffset: 100%; opacity: 0; }
+    10% { opacity: 1; }
+    80% { stroke-dashoffset: -100%; opacity: 1; }
+    100% { stroke-dashoffset: -100%; opacity: 0; }
+}
+
+/* Schematic Timeline */
+.schematic-timeline {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
     gap: 20px;
-    text-align: center;
 }
 
-.step {
-    flex: 1;
-    min-width: 200px;
+/* Glassmorphism Cards */
+.schematic-card {
+    background: rgba(44, 62, 80, 0.85) !important; /* Force dark background */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    padding: 30px 15px;
+    border-radius: 16px;
+    transition: all 0.4s ease;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.step-num {
-    width: 50px;
-    height: 50px;
-    background: var(--accent);
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    border-radius: 50%;
-    margin: 0 auto 20px;
+.schematic-card:hover {
+    transform: translateY(-10px);
+    background: rgba(44, 62, 80, 0.95) !important;
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(255, 102, 0, 0.2);
+}
+
+.schematic-card h3 {
+    color: white !important;
+    font-family: monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+    margin-top: 15px;
+}
+
+.schematic-card p {
+    color: #ccc !important;
+    font-size: 0.9rem;
+    font-family: var(--font-main);
+    margin-top: 10px;
+}
+
+/* Images & Badges */
+.schematic-card .step-image {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+    position: relative;
+    /* Ensure image container doesn't overflow */
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 10px rgba(255,102,0,0.3);
+}
+
+.schematic-card .step-image img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+}
+
+.schematic-card .step-badge {
+    background: #1a252f;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+    font-family: monospace;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.1rem;
+    z-index: 2;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .schematic-timeline {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .circuit-overlay {
+        display: none; /* Hide horizontal circuit on mobile */
+    }
+    
+    .schematic-card {
+        width: 100%;
+        max-width: 400px;
+    }
+    /* Vertical line for mobile */
+    .schematic-timeline::before {
+        content: '';
+        position: absolute;
+        top: 0; bottom: 0; left: 50%;
+        width: 2px;
+        background: #2C3E50;
+        transform: translateX(-50%);
+        z-index: 0;
+    }
 }
 
 /* Testimonials */
